@@ -1,0 +1,24 @@
+[
+  {
+    "myId": 0,
+    "id": 1,
+    "uuid": "bd241cea-9067-4059-bb44-2142c037e307",
+    "name": "test",
+    "modelo": "OTROS",
+    "precio": 1.0,
+    "fecha_lanzamiento": "2024-01-20",
+    "created_at": "2023-10-18",
+    "updated_at": "2023-10-18"
+  },
+  {
+    "myId": 0,
+    "id": 2,
+    "uuid": "c8290db6-1a34-488e-97f2-107dd4eec80f",
+    "name": "test2",
+    "modelo": "MARVEL",
+    "precio": 1.5,
+    "fecha_lanzamiento": "2026-04-10",
+    "created_at": "2023-10-18",
+    "updated_at": "2023-10-18"
+  }
+]

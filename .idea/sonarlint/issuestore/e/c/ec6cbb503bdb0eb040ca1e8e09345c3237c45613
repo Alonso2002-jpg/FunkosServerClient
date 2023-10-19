@@ -1,0 +1,5 @@
+
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(—≤о”ъ€€€€
+v	java:S116"\Rename this field "fecha_lanzamiento" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Нѓр”€€€€€
+j	java:S116"URename this field "created_at" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(озЁт
+j	java:S116 "URename this field "updated_at" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ђ™ь№
