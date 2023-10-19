@@ -1,10 +1,11 @@
 package org.develop.commons.utils.adapters;
 
-import com.google.gson.TypeAdapter;
+import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -12,36 +13,19 @@ import java.time.format.DateTimeFormatter;
  * Un adaptador de tipo personalizado para la serializacion y deserializacion de objetos
  * de tipo LocalDateTime a y desde formato JSON. Este adaptador se utiliza con la libreria Gson.
  */
-public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+public class LocalDateTimeAdapter implements JsonSerializer<LocalDateTime>, JsonDeserializer<LocalDateTime> {
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
-
-
-    /**
-     * Escribe un objeto LocalDateTime en un JsonWriter.
-     *
-     * @param out   El escritor JSON.
-     * @param value El valor LocalDateTime a escribir.
-     * @throws IOException Si ocurre un error de E/S durante la escritura.
-     */
     @Override
-    public void write(JsonWriter out, LocalDateTime value) throws IOException {
-        if (value == null) {
-            out.nullValue();
-        } else {
-            out.value(formatter.format(value));
-        }
+    public LocalDateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+        String dateTimeString = json.getAsString();
+        return LocalDateTime.parse(dateTimeString, formatter);
     }
 
-    /**
-     * Lee un objeto LocalDateTime de un JsonReader.
-     *
-     * @param in El lector JSON.
-     * @return El objeto LocalDateTime leído.
-     * @throws IOException Si ocurre un error de E/S durante la lectura.
-     */
     @Override
-    public LocalDateTime read(JsonReader in) throws IOException {
-        return null;
+    public JsonElement serialize(LocalDateTime src, Type typeOfSrc, JsonSerializationContext context) {
+        String dateTimeString = src.format(formatter);
+        return new JsonPrimitive(dateTimeString);
     }
+
 }

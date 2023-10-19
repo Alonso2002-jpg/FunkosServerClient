@@ -65,7 +65,7 @@ class FunkoServiceImplTest {
 
         assertAll(
                 ()-> assertFalse(res.isEmpty()),
-                ()-> assertEquals(res.size(),2),
+                ()-> assertEquals(2,res.size()),
                 ()-> assertEquals(res.get(0).getUuid(),funko1.getUuid()),
                 ()-> assertEquals(res.get(1).getUuid(),funko2.getUuid())
         );
@@ -109,7 +109,7 @@ class FunkoServiceImplTest {
 
         assertAll(
                 ()-> assertFalse(res.isEmpty()),
-                ()-> assertEquals(res.size(),2),
+                ()-> assertEquals(2,res.size()),
                 ()-> assertEquals(res.get(0).getUuid(),funko1.getUuid()),
                 ()-> assertEquals(res.get(1).getUuid(),funko2.getUuid())
         );
@@ -199,7 +199,7 @@ class FunkoServiceImplTest {
 
         assertAll(
                 ()-> assertNotNull(res),
-                ()-> assertEquals(res.size(),2)
+                ()-> assertEquals(2,res.size())
         );
     }
 }

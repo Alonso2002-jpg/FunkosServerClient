@@ -254,7 +254,7 @@ public class ClientHandler extends Thread{
 
     private void processDelete(Request request) throws ServerException {
         var user = processToken(request.token());
-
+        logger.debug("Borrando");
         if (user.isPresent() && user.get().role().equals(User.Role.ADMIN)){
             var id = Integer.parseInt(request.content());
 

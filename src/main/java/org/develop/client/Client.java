@@ -65,7 +65,7 @@ public class Client {
             sendRequestGetFunkosByDate(token,"2023");
 
             Funko fkn = Funko.builder().id(2)
-                            .name("Funko Update")
+                            .name("Funko Update 2 NUEVO")
                                     .precio(1000.1)
                                             .modelo(Modelo.OTROS)
                                                     .build();
@@ -74,9 +74,9 @@ public class Client {
 
             sendRequestGetFunkoById(token,"2");
 
-            sendRequestDeleteFunko(token,fkn);
-
-            sendRequestGetFunkoById(token,"2");
+//            sendRequestDeleteFunko(token,fkn);
+//
+//            sendRequestGetFunkoById(token,"2");
 
             sendRequestSalir();
 
@@ -206,11 +206,11 @@ public class Client {
 
         switch (response.status()){
             case OK -> {
-                System.out.println(response.content());
                 List<Funko> responseFunkos = gson.fromJson(response.content(),new TypeToken<List<Funko>>(){}.getType());
                 logger.info("🟢 Los funkos son: " + responseFunkos);
             }
             case ERROR -> logger.error("🔴 Error: " + response.content());
+            default -> throw new ClientException("Unexpected response status: " + response.status());
         }
     }
 
