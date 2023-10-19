@@ -58,25 +58,25 @@ public class Client {
 
             sendRequestGetAllFunkos(token);
 
-            sendRequestGetFunkoById(token,"2");
+            sendRequestGetFunkoById(token,"10");
 
             sendRequestGetFunkosByModel(token,"Marvel");
 
             sendRequestGetFunkosByDate(token,"2023");
 
-            Funko fkn = Funko.builder().id(2)
-                            .name("Funko Update 2 NUEVO")
+            Funko fkn = Funko.builder().id(10)
+                            .name("Funko Update Num 10 NUEVO")
                                     .precio(1000.1)
                                             .modelo(Modelo.OTROS)
                                                     .build();
 
             sendRequestUpdateFunko(token,fkn);
 
-            sendRequestGetFunkoById(token,"2");
+            sendRequestGetFunkoById(token,"10");
 
-//            sendRequestDeleteFunko(token,fkn);
-//
-//            sendRequestGetFunkoById(token,"2");
+            sendRequestDeleteFunko(token,Funko.builder().id(19).build());
+
+            sendRequestGetFunkoById(token,"19");
 
             sendRequestSalir();
 
@@ -150,7 +150,7 @@ public class Client {
 
     private String sendRequestLogin() throws ClientException{
         String myToken = null;
-        var loginGson = gson.toJson(new Login("pepe","pepe1234"));
+        var loginGson = gson.toJson(new Login("ana","ana1234"));
 
         Request request = new Request(Request.Type.LOGIN, loginGson, null, LocalDateTime.now().toString());
         logger.debug("Request Send: " + request);
@@ -312,7 +312,7 @@ public class Client {
     }
 
     private void sendRequestDeleteFunko(String token, Funko funko) throws ClientException, IOException {
-        Request request = new Request(Request.Type.DELETE,gson.toJson(funko),token,LocalDateTime.now().toString());
+        Request request = new Request(Request.Type.DELETE,String.valueOf(funko.getId()),token,LocalDateTime.now().toString());
         logger.debug("Request Send: " + request);
 
         out.println(gson.toJson(request));
@@ -322,12 +322,8 @@ public class Client {
 
         switch (response.status()) {
             case OK -> {
-                boolean deleted = gson.fromJson(response.content(),new TypeToken<Boolean>(){}.getType());
-                if (deleted){
-                  logger.info("🟢 El Funko fue eliminado con exito");
-                }else {
-                    logger.error("🔴 Error al eliminar el Funko");
-                }
+                Funko deleted = gson.fromJson(response.content(),new TypeToken<Funko>(){}.getType());
+                  logger.info("🟢 El Funko fue eliminado con exito: " + deleted);
             }
             case ERROR -> logger.error("🔴 Error: " + response.content());
             default -> throw new ClientException("Unexpected response status: " + response.status());
