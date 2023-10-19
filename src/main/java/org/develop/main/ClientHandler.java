@@ -133,6 +133,7 @@ public class ClientHandler extends Thread{
             logger.error("Token not verified");
             throw new ServerException("Token not verified");
         }
+
     }
 
     private void processGetAll(Request request) throws ServerException {
