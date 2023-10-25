@@ -136,7 +136,7 @@ public class FunkoRepositoryImpl implements FunkoRepository{
     }
 
     /**
-     * Actualiza un Funko en la base de datos con los nuevos valores proporcionados y devuelve el Funko actualizado.
+         * Actualiza un Funko en la base de datos con los nuevos valores proporcionados y devuelve el Funko actualizado.
      *
      * @param funko El Funko con los valores actualizados que se va a guardar en la base de datos.
      * @return Un mono (Mono) que representa el Funko actualizado.

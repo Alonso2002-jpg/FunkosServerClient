@@ -1,17 +1,12 @@
 
-g	java:S112-"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8çä¬´1
+g	java:S1120"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8€ç´Æ´1
 i
-java:S1301¢"KReplace this "switch" statement by "if" statements to increase readability.(Ó ­8‘çä¬´1
-i
-java:S1301Ì"KReplace this "switch" statement by "if" statements to increase readability.(Ó ­8’çä¬´1
+java:S1301¥"KReplace this "switch" statement by "if" statements to increase readability.(Ó ­8©«óÌ´1
 h
-java:S2259f"FA "NullPointerException" could be thrown; "myConfig" is nullable here.(êòÊùÿÿÿÿ8¾æŸ­´1
+java:S2259i"FA "NullPointerException" could be thrown; "myConfig" is nullable here.(êòÊùÿÿÿÿ8Ï«óÌ´1
 B
-java:S1168Œ"$Return an empty map instead of null.(¥¹ï8­çä¬´1
+java:S1168"$Return an empty map instead of null.(¥¹ï8ß«óÌ´1
 B
-java:S1168"$Return an empty map instead of null.(¥¹ï8­çä¬´1
-¥
-java:S1130Ã"†Remove the declaration of thrown exception 'org.develop.exceptions.client.ClientException', as it cannot be thrown from method's body.(ä¦Â¸8ÎçŸ­´1
-v	java:S131Ì"YComplete cases by adding the missing enum constants or add a default case to this switch.(Ó ­8ÕçŸ­´1
+java:S1168“"$Return an empty map instead of null.(¥¹ï8ß«óÌ´1
 W
-java:S1144"9Remove this unused private "sendRequestPostFunko" method.(‘·üÆ8»çä¬´1
+java:S1144’"9Remove this unused private "sendRequestPostFunko" method.(‘·üÆ8ó«óÌ´1

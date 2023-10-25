@@ -1,14 +1,14 @@
 
-g	java:S112H"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8˜ô ­´1
+g	java:S112H"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ŞèÎ´1
 h
-java:S22597"FA "NullPointerException" could be thrown; "myConfig" is nullable here.(òñÚõüÿÿÿÿ8‹—­­´1
+java:S22597"FA "NullPointerException" could be thrown; "myConfig" is nullable here.(òñÚõüÿÿÿÿ8óèÎ´1
 D
-java:S2189D""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8‹—­­´1
+java:S2189D""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ8óèÎ´1
 N
-java:S1602>",Remove useless curly braces around statement(ĞÜéºûÿÿÿÿ8Ï©¤­´1
+java:S1602>",Remove useless curly braces around statement(ĞÜéºûÿÿÿÿ8§ı£Î´1
 A
-java:S1168h"$Return an empty map instead of null.(¥¹ï8Êô ­´1
+java:S1168h"$Return an empty map instead of null.(¥¹ï8éÎ´1
 A
-java:S1168l"$Return an empty map instead of null.(¥¹ï8Ëô ­´1
+java:S1168l"$Return an empty map instead of null.(¥¹ï8’éÎ´1
 a
-java:S1128	"ERemove this unused import 'org.develop.services.funkos.FunkoService'.(Œ‚Ò#8Ÿ—­­´1
+java:S1128	"ERemove this unused import 'org.develop.services.funkos.FunkoService'.(Œ‚Ò#8’éÎ´1

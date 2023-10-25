@@ -1,0 +1,14 @@
+
+`	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
+q
+java:S1450"[Remove the "dataBaseName" field and declare it as a local variable in the relevant methods.(×ÚßŞ
+o
+java:S1450""YRemove the "initScript" field and declare it as a local variable in the relevant methods.(¸ºı¼
+n
+java:S1450"XRemove the "serverUrl" field and declare it as a local variable in the relevant methods.(°èµ¬
+´
+java:S6548"˜A Singleton implementation was detected. Make sure the use of the Singleton pattern is required and the implementation is the right one for the context.( ùÓ‹ÿÿÿÿÿ
+E	java:S106K"+Replace this use of System.out by a logger.( Ç¡şÿÿÿÿ
+Q	java:S125u"<This block of commented-out lines of code should be removed.(öÓ©Ø
+D
+java:S1068"".Remove this unused "initScript" private field.(¸ºı¼
