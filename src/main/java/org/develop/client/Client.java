@@ -150,7 +150,7 @@ public class Client {
 
     private String sendRequestLogin() throws ClientException{
         String myToken = null;
-        var loginGson = gson.toJson(new Login("ana","ana1234"));
+        var loginGson = gson.toJson(new Login("pepe","pepe1234"));
 
         Request request = new Request(Request.Type.LOGIN, loginGson, null, LocalDateTime.now().toString());
         logger.debug("Request Send: " + request);

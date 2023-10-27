@@ -35,4 +35,5 @@ public interface FunkoService {
     Flux<Funko> imported(String file);
     Mono<Funko> findByUuid(UUID uuid);
 
+
 }

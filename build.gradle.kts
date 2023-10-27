@@ -1,6 +1,9 @@
 plugins {
     id("java")
     jacoco
+    //shadowjar
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+
 }
 
 group = "org.develop"
@@ -39,12 +42,18 @@ tasks.test {
 }
 
 
-tasks.jar {
-    manifest {
+tasks.shadowJar{
+    manifest{
         attributes["Main-Class"] = "org.develop.main.Server"
     }
-    configurations["compileClasspath"].forEach { file: File ->
-        from(zipTree(file.absoluteFile))
-    }
-    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
+
+//tasks.jar {
+//    manifest {
+//        attributes["Main-Class"] = "org.develop.main.Server"
+//    }
+//    configurations["compileClasspath"].forEach { file: File ->
+//        from(zipTree(file.absoluteFile))
+//    }
+//    duplicatesStrategy = DuplicatesStrategy.INCLUDE
+//}

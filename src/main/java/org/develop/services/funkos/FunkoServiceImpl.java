@@ -37,7 +37,6 @@ public class FunkoServiceImpl implements FunkoService{
         this.cache = new FunkoCacheImpl(CACHE_SIZE);
         this.notification = notification;
         this.backupManager = backupManager;
-
     }
 
     /**
@@ -212,4 +211,5 @@ public class FunkoServiceImpl implements FunkoService{
     public Flux<Notificacion<Funko>> getNotifications(){
         return notification.getNotificationAsFlux();
     }
+
 }
