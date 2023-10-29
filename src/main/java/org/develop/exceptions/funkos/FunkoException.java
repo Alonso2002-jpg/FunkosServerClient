@@ -1,7 +1,7 @@
 package org.develop.exceptions.funkos;
 
 /**
- * Una excepción personalizada que se utiliza para representar problemas relacionados con objetos Funko
+ * Una excepcion personalizada que se utiliza para representar problemas relacionados con objetos Funko
  * en la aplicacion. Puede ser lanzada cuando se encuentran errores o situaciones excepcionales al tratar
  * con objetos Funko.
  */

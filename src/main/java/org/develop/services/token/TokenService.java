@@ -10,13 +10,24 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Date;
 
+/**
+ * Clase que proporciona metodos para la creacion y verificacion de tokens JWT (JSON Web Tokens).
+ */
 public class TokenService {
     private static TokenService INSTANCE = null;
     private final Logger logger = LoggerFactory.getLogger(TokenService.class);
 
+    /**
+     * Constructor privado para garantizar que esta clase sea un Singleton.
+     */
     private TokenService() {
     }
 
+    /**
+     * Obtiene una instancia unica de TokenService (Singleton).
+     *
+     * @return La instancia unica de TokenService.
+     */
     public synchronized static TokenService getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new TokenService();
@@ -24,6 +35,14 @@ public class TokenService {
         return INSTANCE;
     }
 
+    /**
+     * Crea un token JWT para un usuario con los datos proporcionados.
+     *
+     * @param user           El usuario para el que se crea el token.
+     * @param tokenSecret    La clave secreta para firmar el token.
+     * @param tokenExpiration El tiempo de expiracion del token en milisegundos.
+     * @return El token JWT creado.
+     */
     public String createToken(User user, String tokenSecret, long tokenExpiration) {
         logger.debug("Creando token");
         Algorithm algorithm = Algorithm.HMAC256(tokenSecret);
@@ -42,6 +61,14 @@ public class TokenService {
                 .sign(algorithm); // Firmamos el token
     }
 
+    /**
+     * Verifica un token JWT con respecto a un usuario especifico.
+     *
+     * @param token       El token JWT que se va a verificar.
+     * @param tokenSecret La clave secreta utilizada para firmar el token.
+     * @param user        El usuario con el que se compara el token.
+     * @return `true` si el token es valido y pertenece al usuario especificado, de lo contrario, `false`.
+     */
     public boolean verifyToken(String token, String tokenSecret, User user) {
         logger.debug("Verificando token");
         Algorithm algorithm = Algorithm.HMAC256(tokenSecret);
@@ -62,6 +89,13 @@ public class TokenService {
         }
     }
 
+    /**
+     * Verifica un token JWT sin especificar un usuario.
+     *
+     * @param token       El token JWT que se va a verificar.
+     * @param tokenSecret La clave secreta utilizada para firmar el token.
+     * @return `true` si el token es valido, de lo contrario, `false`.
+     */
     public boolean verifyToken(String token, String tokenSecret) {
         logger.debug("Verificando token");
         Algorithm algorithm = Algorithm.HMAC256(tokenSecret);
@@ -77,6 +111,13 @@ public class TokenService {
         }
     }
 
+    /**
+     * Obtiene las reclamaciones (claims) de un token JWT verificado.
+     *
+     * @param token       El token JWT que se va a verificar y del que se obtendran las reclamaciones.
+     * @param tokenSecret La clave secreta utilizada para firmar el token.
+     * @return Un mapa de reclamaciones (claims) del token verificado o `null` si ocurre un error.
+     */
     public java.util.Map<String, com.auth0.jwt.interfaces.Claim> getClaims(String token, String tokenSecret) {
         logger.debug("Verificando token");
         Algorithm algorithm = Algorithm.HMAC256(tokenSecret);

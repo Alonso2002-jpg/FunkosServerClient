@@ -4,7 +4,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 /**
- * Clase que proporciona la funcionalidad de generación de identificadores unicos.
+ * Clase que proporciona la funcionalidad de generacion de identificadores unicos.
  * Esta clase garantiza que los identificadores generados sean unicos incluso en entornos
  * multi-hilo gracias al uso de un mecanismo de bloqueo.
  */

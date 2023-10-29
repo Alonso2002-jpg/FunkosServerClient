@@ -1,7 +1,7 @@
 package org.develop.commons.model.mainUse;
 
 /**
- * Clase que representa una notificacion genérica que puede contener cualquier tipo de contenido.
+ * Clase que representa una notificacion generica que puede contener cualquier tipo de contenido.
  *
  * @param <T> El tipo de contenido que la notificacion llevara.
  */

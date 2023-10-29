@@ -2,7 +2,7 @@ package org.develop.exceptions.funkos;
 
 
 /**
- * Una excepcióo que representa una situacion en la que un objeto Funko no se pudo guardar correctamente
+ * Una excepcion que representa una situacion en la que un objeto Funko no se pudo guardar correctamente
  * en la aplicacion. Se utiliza para indicar que ha ocurrido un error al intentar guardar un objeto Funko.
  */
 public class FunkoNotSaveException extends FunkoException{

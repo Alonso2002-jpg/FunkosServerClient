@@ -5,16 +5,26 @@ import org.develop.client.Client;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * La clase ClientLauncher se utiliza para lanzar múltiples clientes con diferentes configuraciones.
+ * Cada cliente representa un usuario con credenciales diferentes (usuarios "pepe" y "ana").
+ */
 public class ClientLauncher {
 
     private ArrayList<Client> clients = new ArrayList<>();
 
+    /**
+     * Constructor de la clase ClientLauncher que inicializa una lista de clientes.
+     */
     public ClientLauncher(){
         for (int i = 0; i < 10; i++) {
             clients.add(new Client());
         }
     }
-
+    /**
+     * El método principal de la aplicación que crea un objeto ClientLauncher, configura
+     * las credenciales de usuario para cada cliente y luego inicia los clientes
+     */
     public static void main(String[] args) throws IOException {
         ClientLauncher launcher = new ClientLauncher();
         for (int i = 0; i < 10; i++) {

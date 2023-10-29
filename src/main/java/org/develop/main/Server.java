@@ -21,6 +21,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
+/**
+ * El punto de entrada principal del servidor Funko. Inicia el servidor, configura la seguridad SSL, y escucha conexiones entrantes de clientes.
+ *
+ */
 public class Server {
     public static final String TOKEN_SECRET = "TokenSuperUltraSecretoNoLoCuentes";
     public static final long TOKEN_EXPIRATION = 10000;
@@ -73,6 +77,18 @@ public class Server {
         }
     }
 
+    /**
+     * Lee la configuracion del servidor desde un archivo de propiedades y la devuelve en forma de mapa de cadenas.
+     *
+     * @return Un mapa que contiene la configuracion leida con las siguientes claves:
+     *   - "keyFile": Ruta al archivo de clave utilizado para SSL.
+     *   - "keyPassword": Contrasena asociada al archivo de clave.
+     *   - "tokenSecret": Clave secreta para firmar y verificar tokens de autenticacion.
+     *   - "tokenExpiration": Duracion de validez de los tokens de autenticacion en milisegundos.
+     *
+     * @throws IllegalStateException Si falta la ruta del archivo de clave o la contrasena en la configuracion.
+     * @throws FileNotFoundException Si el archivo de clave no se encuentra en la ruta especificada.
+     */
     public static Map<String,String> readConfigFile(){
         try{
             logger.debug("Reading config file");

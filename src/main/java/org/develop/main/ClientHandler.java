@@ -29,6 +29,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
+/**
+ * Clase que maneja la comunicacion con un cliente en un hilo separado.
+ */
 public class ClientHandler extends Thread{
     private final Logger logger = LoggerFactory.getLogger(ClientHandler.class);
     private final Socket clientSocket;
@@ -41,12 +44,22 @@ public class ClientHandler extends Thread{
     BufferedReader in;
     PrintWriter out;
 
+    /**
+     * Constructor de la clase ClientHandler.
+     *
+     * @param socket El socket de cliente con el que se comunica este manejador.
+     * @param clientNumber Un identificador único para el cliente manejado por este hilo.
+     * @param funkoService El servicio FunkoService utilizado para realizar operaciones relacionadas con Funkos.
+     */
     public ClientHandler(Socket socket, long clientNumber, FunkoService funkoService) {
         this.clientSocket = socket;
         this.clientNumber = clientNumber;
         this.funkoService = funkoService;
     }
 
+    /**
+     * Ejecuta el hilo del manejador de clientes para manejar las solicitudes del cliente.
+     */
     @Override
     public void run(){
         try {
@@ -69,12 +82,22 @@ public class ClientHandler extends Thread{
         }
     }
 
+    /**
+     * Abre la conexion con el cliente.
+     *
+     * @throws IOException Si ocurre un error al abrir la conexion.
+     */
     public void openConnection() throws IOException {
         logger.debug("Connectando con el cliente numero: " + clientNumber);
         in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         out = new PrintWriter(clientSocket.getOutputStream(),true);
     }
 
+    /**
+     * Cierra la conexion con el cliente.
+     *
+     * @throws IOException Si ocurre un error al cerrar la conexion.
+     */
     public void closeConnection() throws IOException {
         logger.debug("Cerrando la conexion con el cliente numero: " + clientNumber);
         in.close();
@@ -82,6 +105,12 @@ public class ClientHandler extends Thread{
         clientSocket.close();
     }
 
+    /**
+     * Maneja una solicitud recibida del cliente.
+     *
+     * @param request La solicitud recibida del cliente.
+     * @throws ServerException Si se produce un error en el servidor al procesar la solicitud.
+     */
     private void handleRequest(Request request) throws ServerException {
         logger.debug("Request Handler: " + request);
 
@@ -98,9 +127,18 @@ public class ClientHandler extends Thread{
             default -> new Response(Response.Status.ERROR, "Not implemented Request", LocalDateTime.now().toString());
         }
     }
+    /**
+     * Procesa la solicitud de salida (SALIR) del cliente y envia una respuesta de despedida.
+     */
     private void processSalir(){
         out.println(gson.toJson(new Response(Response.Status.BYE,"Adios",LocalDateTime.now().toString())));
     }
+    /**
+     * Procesa la solicitud de inicio de sesion (LOGIN) del cliente y genera un token de autenticacion si es valido.
+     *
+     * @param request La solicitud de inicio de sesion del cliente.
+     * @throws ServerException Si se produce un error durante el proceso de inicio de sesion.
+     */
     private void processLogin(Request request) throws ServerException {
         logger.debug("Requested login Recieved: " + request);
 
@@ -117,6 +155,13 @@ public class ClientHandler extends Thread{
         logger.debug("Sending Response: " + token);
         out.println(gson.toJson(new Response(Response.Status.TOKEN,token,LocalDateTime.now().toString())));
     }
+    /**
+     * Procesa un token de autenticacion y verifica su validez, devolviendo el usuario correspondiente si es valido.
+     *
+     * @param token El token de autenticacion a procesar.
+     * @return Un objeto Optional que contiene el usuario autenticado si el token es valido.
+     * @throws ServerException Si se produce un error al verificar o procesar el token.
+     */
 
     private Optional<User> processToken(String token) throws ServerException {
         if (TokenService.getInstance().verifyToken(token,Server.TOKEN_SECRET)){
@@ -136,6 +181,12 @@ public class ClientHandler extends Thread{
 
     }
 
+    /**
+     * Procesa la solicitud para obtener todos los Funkos y envia una respuesta que contiene la lista de Funkos.
+     *
+     * @param request La solicitud de obtener todos los Funkos.
+     * @throws ServerException Si se produce un error durante el proceso de la solicitud.
+     */
     private void processGetAll(Request request) throws ServerException {
         processToken(request.token());
 
@@ -148,6 +199,12 @@ public class ClientHandler extends Thread{
                 });
     }
 
+    /**
+     * Procesa la solicitud para obtener un Funko por su ID y envía una respuesta que contiene el Funko encontrado.
+     *
+     * @param request La solicitud de obtener un Funko por su ID.
+     * @throws ServerException Si se produce un error durante el proceso de la solicitud.
+     */
     private void processGetById(Request request) throws ServerException {
         processToken(request.token());
 
@@ -166,6 +223,12 @@ public class ClientHandler extends Thread{
                 );
     }
 
+    /**
+     * Procesa la solicitud para obtener Funkos por modelo y envia una respuesta que contiene la lista de Funkos encontrados.
+     *
+     * @param request La solicitud de obtener Funkos por modelo.
+     * @throws ServerException Si se produce un error durante el proceso de la solicitud.
+     */
     private void processGetByModel(Request request) throws ServerException {
         processToken(request.token());
         Modelo model = Modelo.valueOf(request.content());
@@ -186,6 +249,12 @@ public class ClientHandler extends Thread{
                 );
     }
 
+    /**
+     * Procesa la solicitud para obtener Funkos por ano de lanzamiento y envia una respuesta que contiene la lista de Funkos encontrados.
+     *
+     * @param request La solicitud de obtener Funkos por año de lanzamiento.
+     * @throws ServerException Si se produce un error durante el proceso de la solicitud.
+     */
     private void processGetByLaunchYear(Request request) throws ServerException {
         processToken(request.token());
         int launchDate = Integer.parseInt(request.content());
@@ -206,6 +275,12 @@ public class ClientHandler extends Thread{
                 );
     }
 
+    /**
+     * Procesa la solicitud para crear un nuevo Funko y envia una respuesta que contiene el Funko creado.
+     *
+     * @param request La solicitud de crear un nuevo Funko.
+     * @throws ServerException Si se produce un error durante el proceso de la solicitud.
+     */
     private void processPost(Request request) throws ServerException {
         var user = processToken(request.token());
         if (user.isPresent() && user.get().role().equals(User.Role.ADMIN)){
@@ -229,6 +304,13 @@ public class ClientHandler extends Thread{
         }
     }
 
+
+    /**
+     * Procesa la solicitud para actualizar un Funko existente y envia una respuesta que contiene el Funko actualizado.
+     *
+     * @param request La solicitud de actualizar un Funko existente.
+     * @throws ServerException Si se produce un error durante el proceso de la solicitud.
+     */
     private void processUpdate(Request request) throws ServerException {
         var user = processToken(request.token());
 
@@ -253,6 +335,12 @@ public class ClientHandler extends Thread{
         }
     }
 
+    /**
+     * Procesa la solicitud para eliminar un Funko existente y envia una respuesta que confirma la eliminacion.
+     *
+     * @param request La solicitud de eliminar un Funko existente por su ID.
+     * @throws ServerException Si se produce un error durante el proceso de la solicitud.
+     */
     private void processDelete(Request request) throws ServerException {
         var user = processToken(request.token());
         logger.debug("Borrando");
