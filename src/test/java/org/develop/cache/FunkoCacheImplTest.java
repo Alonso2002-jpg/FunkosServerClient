@@ -3,9 +3,12 @@ package org.develop.cache;
 import org.develop.commons.model.mainUse.Funko;
 import org.develop.commons.model.mainUse.Modelo;
 import org.develop.services.funkos.FunkoCacheImpl;
+import org.develop.services.funkos.FunkoServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -17,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FunkoCacheImplTest {
 
     private FunkoCacheImpl funkoCache;
+    private Logger logger = LoggerFactory.getLogger(FunkoCacheImplTest.class);
     private Funko funko1,funko2;
 
     @BeforeEach
@@ -57,7 +61,7 @@ class FunkoCacheImplTest {
 
         assertAll(
                 ()-> assertFalse(funkoCache.getCache().isEmpty()),
-                ()-> assertEquals(funkoCache.getCache().size(),1)
+                ()-> assertEquals(1,funkoCache.getCache().size())
         );
     }
 
@@ -81,7 +85,7 @@ class FunkoCacheImplTest {
 
         assertAll(
                 ()-> assertFalse(funkoCache.getCache().isEmpty()),
-                ()-> assertEquals(funkoCache.getCache().size(),1)
+                ()-> assertEquals(1,funkoCache.getCache().size())
         );
     }
 
@@ -90,6 +94,7 @@ class FunkoCacheImplTest {
     void clearForTimeTest() throws InterruptedException {
         funkoCache.put(funko1.getId(),funko1).block();
         funkoCache.getCleaner().scheduleAtFixedRate(funkoCache::clear,1,1, TimeUnit.MINUTES);
+        logger.info("Esperamos 1 minuto para probar la eliminacion por tiempo.");
         Thread.sleep(61000);
 
         assertAll(

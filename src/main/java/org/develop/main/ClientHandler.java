@@ -225,7 +225,7 @@ public class ClientHandler extends Thread{
                     );
         }else {
             logger.error("User doesn't have the necessary permissions");
-            throw new ServerException("User doesn't have the necessary permissions");
+            out.println(gson.toJson(new Response(Response.Status.ERROR,"User doesn't have the necessary permissions",LocalDateTime.now().toString())));
         }
     }
 
@@ -249,7 +249,7 @@ public class ClientHandler extends Thread{
                     );
         }else {
             logger.error("User doesn't have the necessary permissions");
-            throw new ServerException("User doesn't have the necessary permissions");
+            out.println(gson.toJson(new Response(Response.Status.ERROR,"User doesn't have the necessary permissions",LocalDateTime.now().toString())));
         }
     }
 
@@ -273,7 +273,7 @@ public class ClientHandler extends Thread{
                     );
         }else {
             logger.error("User doesn't have the necessary permissions");
-            throw new ServerException("User doesn't have the necessary permissions");
+            out.println(gson.toJson(new Response(Response.Status.ERROR,"User doesn't have the necessary permissions",LocalDateTime.now().toString())));
         }
     }
 

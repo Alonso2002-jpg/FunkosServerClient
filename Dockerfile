@@ -14,7 +14,7 @@ COPY cert cert
 COPY src src
 
 # Compila y construye el proyecto, podemos evitar los test evitando con -x test
-RUN ./gradlew shadowJar -x test
+RUN ./gradlew shadowJar
 
 # Etapa de ejecución, un docker especifico, que se etiqueta como run
 # Con una imagen de java

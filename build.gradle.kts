@@ -46,6 +46,8 @@ tasks.shadowJar{
     manifest{
         attributes["Main-Class"] = "org.develop.main.Server"
     }
+
+    dependsOn(tasks.test)
 }
 
 //tasks.jar {

@@ -32,6 +32,8 @@ public class Client {
  private static final String HOST = "localhost";
     private static final int PORT = 3000;
     private static final Logger logger = LoggerFactory.getLogger(Client.class);
+    private String username;
+    private String password;
     private final Gson gson = new GsonBuilder()
             .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
             .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
@@ -52,6 +54,11 @@ public class Client {
 
     public void start() throws IOException {
         try {
+
+            setUser("pepe");
+            setPassword("pepe1234");
+
+
             openConnection();
 
             String token = sendRequestLogin();
@@ -64,15 +71,24 @@ public class Client {
 
             sendRequestGetFunkosByDate(token,"2023");
 
-            Funko fkn = Funko.builder().id(10)
+            Funko fkn = Funko.builder()
+                    .myId(100L)
+                            .id(100)
+                            .uuid(UUID.randomUUID())
                             .name("Funko Update Num 10 NUEVO")
                                     .precio(1000.1)
                                             .modelo(Modelo.OTROS)
+                                        .fecha_lanzamiento(LocalDate.now())
                                                     .build();
+
+            sendRequestPostFunko(token,fkn);
+
+            fkn.setName("Funko Changes");
+            fkn.setId(91);
 
             sendRequestUpdateFunko(token,fkn);
 
-            sendRequestGetFunkoById(token,"10");
+            sendRequestGetFunkoById(token,"91");
 
             sendRequestDeleteFunko(token,Funko.builder().id(19).build());
 
@@ -150,7 +166,7 @@ public class Client {
 
     private String sendRequestLogin() throws ClientException{
         String myToken = null;
-        var loginGson = gson.toJson(new Login("pepe","pepe1234"));
+        var loginGson = gson.toJson(new Login(username,password));
 
         Request request = new Request(Request.Type.LOGIN, loginGson, null, LocalDateTime.now().toString());
         logger.debug("Request Send: " + request);
@@ -328,5 +344,13 @@ public class Client {
             case ERROR -> logger.error("🔴 Error: " + response.content());
             default -> throw new ClientException("Unexpected response status: " + response.status());
         }
+    }
+
+    public void setUser(String username){
+        this.username = username;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
     }
 }

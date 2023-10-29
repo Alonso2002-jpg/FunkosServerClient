@@ -2,23 +2,23 @@
   {
     "myId": 0,
     "id": 1,
-    "uuid": "8c4c5a50-ae97-4773-ac88-29ad810d9e38",
+    "uuid": "cbf49493-8a87-43f6-8482-6a83282307fc",
     "name": "test",
     "modelo": "OTROS",
     "precio": 1.0,
     "fecha_lanzamiento": "2024-01-20",
-    "created_at": "2023-10-27 20:23:11",
-    "updated_at": "2023-10-27 20:23:11"
+    "created_at": "2023-10-29 11:49:26",
+    "updated_at": "2023-10-29 11:49:26"
   },
   {
     "myId": 0,
     "id": 2,
-    "uuid": "de07d7bc-83ff-411f-b583-18578f737d68",
+    "uuid": "2a8a4bb4-1603-49d2-a2f7-cc2b5a159e11",
     "name": "test2",
     "modelo": "MARVEL",
     "precio": 1.5,
     "fecha_lanzamiento": "2026-04-10",
-    "created_at": "2023-10-27 20:23:11",
-    "updated_at": "2023-10-27 20:23:11"
+    "created_at": "2023-10-29 11:49:26",
+    "updated_at": "2023-10-29 11:49:26"
   }
 ]
