@@ -22,7 +22,7 @@ public class ClientLauncher {
         }
     }
     /**
-     * El método principal de la aplicación que crea un objeto ClientLauncher, configura
+     * El metodo principal de la aplicacion que crea un objeto ClientLauncher, configura
      * las credenciales de usuario para cada cliente y luego inicia los clientes
      */
     public static void main(String[] args) throws IOException {
