@@ -2,6 +2,7 @@ package org.develop.commons.model.mainUse;
 
 import lombok.Builder;
 import lombok.Data;
+import org.develop.commons.model.mainUse.Modelo;
 import org.develop.commons.utils.locale.MyLocale;
 
 import java.time.LocalDate;
@@ -9,13 +10,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 
-/**
- * Clase que representa un Funko, un objeto coleccionable relacionado con figuras
- * de vinilo. Cada Funko tiene un identificador inico, un nombre, un modelo, un precio,
- * una fecha de lanzamiento y fechas de creacion y actualizacion.
- *
- * @author Alonso Cruz, Joselyn Obando
- */
 @Data
 @Builder
 public class Funko {
